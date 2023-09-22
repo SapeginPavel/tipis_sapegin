@@ -28,6 +28,15 @@ public class Controller {
     private LineChart<?, ?> lch1;
 
     @FXML
+    private LineChart<?, ?> lch2;
+
+    @FXML
+    private LineChart<?, ?> lch3;
+
+    @FXML
+    private LineChart<?, ?> lch4;
+
+    @FXML
     void onClickMenuClose(ActionEvent event) {
         System.exit(0);
     }
@@ -38,24 +47,21 @@ public class Controller {
 
     @FXML
     void onClickBuildGraphs(ActionEvent event) {
-        NumberAxis x1 = new NumberAxis();
-        x1.setLabel("x");
 
-        NumberAxis y1 = new NumberAxis();
-        y1.setLabel("y");
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("sin(x)"); //пока не надо
+//        ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
+//        for (int i = 0; i < 20; i++){
+//            data.add(new XYChart.Data(i, Math.sin(i)));
+//        }
+//
+//        series.setData(data);
 
-        LineChart lineChart = new LineChart(x1, y1);
+        XYChart.Series s1 = CreateSeriesUtil.createSinusSeries(50, 1);
+        lch1.getData().add(s1);
 
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("sin(x)");
-        ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
-        for (int i = 0; i < 20; i++){
-            data.add(new XYChart.Data(i, Math.sin(i)));
-        }
-
-        series1.setData(data);
-
-        lch1.getData().add(series1);
+        XYChart.Series s2 = CreateSeriesUtil.createSinusSeries(50, 5);
+        lch2.getData().add(s2);
 
     }
 
