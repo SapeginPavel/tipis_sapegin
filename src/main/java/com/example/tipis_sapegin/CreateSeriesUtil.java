@@ -11,8 +11,7 @@ public class CreateSeriesUtil {
         XYChart.Series series = new XYChart.Series();
         ObservableList<XYChart.Data> data = FXCollections.observableArrayList(); //в data надо добавлять новые XYChart.Data
 
-        maxX += 5;
-        int pointsForUnitSegment = 50;
+        int pointsForUnitSegment = 100;
 
         for (int i = 0;; i++) {
             double x = (i + 0.0) / pointsForUnitSegment;

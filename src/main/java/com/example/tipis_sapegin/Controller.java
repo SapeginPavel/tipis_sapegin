@@ -46,38 +46,13 @@ public class Controller {
     @FXML
     void onClickBuildGraphs(ActionEvent event) {
 
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("sin(x)"); //пока не надо
-//        ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
-//        for (int i = 0; i < 20; i++){
-//            data.add(new XYChart.Data(i, Math.sin(i)));
-//        }
-//
-//        series.setData(data);
+        //setAutoRanging(false)
+        int maxX = 3;
 
-        int maxX = 5;
-        try { //попытка снять maxX с графика
-            NumberAxis axis = (NumberAxis) lch1.getXAxis();
-            maxX = (int) axis.getUpperBound();
-        } catch (Exception e) {
-
-        }
-
-        NumberAxis axis = (NumberAxis) lch1.getXAxis();
-        axis.setAutoRanging(false);
-        XYChart.Series s1 = CreateSeriesUtil.createSinusSeries(maxX, 1);
-        lch1.getData().add(s1);
-
-        XYChart.Series s2 = CreateSeriesUtil.createSinusSeries(maxX, 2);
-        lch2.getData().add(s2);
-
-        XYChart.Series s3 = CreateSeriesUtil.createSinusSeries(maxX, 4);
-        lch3.getData().add(s3);
-
-        XYChart.Series s4 = CreateSeriesUtil.createSinusSeries(maxX, 8);
-        lch4.getData().add(s4);
-
-
+        lch1.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 1));
+        lch2.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 2));
+        lch3.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 4));
+        lch4.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 8));
 
     }
 
