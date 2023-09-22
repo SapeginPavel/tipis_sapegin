@@ -55,7 +55,7 @@ public class Controller {
 //
 //        series.setData(data);
 
-        int maxX = 50;
+        int maxX = 5;
         try { //попытка снять maxX с графика
             NumberAxis axis = (NumberAxis) lch1.getXAxis();
             maxX = (int) axis.getUpperBound();
@@ -63,11 +63,19 @@ public class Controller {
 
         }
 
-        XYChart.Series s1 = CreateSeriesUtil.createSinusSeries(50, 1);
+        NumberAxis axis = (NumberAxis) lch1.getXAxis();
+        axis.setAutoRanging(false);
+        XYChart.Series s1 = CreateSeriesUtil.createSinusSeries(maxX, 1);
         lch1.getData().add(s1);
 
-        XYChart.Series s2 = CreateSeriesUtil.createSinusSeries(50, 5);
+        XYChart.Series s2 = CreateSeriesUtil.createSinusSeries(maxX, 2);
         lch2.getData().add(s2);
+
+        XYChart.Series s3 = CreateSeriesUtil.createSinusSeries(maxX, 4);
+        lch3.getData().add(s3);
+
+        XYChart.Series s4 = CreateSeriesUtil.createSinusSeries(maxX, 8);
+        lch4.getData().add(s4);
 
 
 

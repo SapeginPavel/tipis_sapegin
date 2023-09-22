@@ -6,12 +6,20 @@ import javafx.scene.chart.XYChart;
 
 public class CreateSeriesUtil {
 
-    public static XYChart.Series createSinusSeries(int numOfPoints, int sinusFrequency) {
+    public static XYChart.Series createSinusSeries(int maxX, int sinusFrequency) {
+
         XYChart.Series series = new XYChart.Series();
         ObservableList<XYChart.Data> data = FXCollections.observableArrayList(); //в data надо добавлять новые XYChart.Data
-        for (int x = 0; x < numOfPoints * 10; x++) {
-            double x2 = x / 10.0;
-            data.add(new XYChart.Data(x2 * Math.PI, Math.sin(x2 * Math.PI * sinusFrequency)));
+
+        maxX += 5;
+        int pointsForUnitSegment = 50;
+
+        for (int i = 0;; i++) {
+            double x = (i + 0.0) / pointsForUnitSegment;
+            data.add(new XYChart.Data(x, Math.sin(x * 2 * Math.PI * sinusFrequency)));
+            if (x == maxX) {
+                break;
+            }
         }
         series.setData(data);
         return series;
