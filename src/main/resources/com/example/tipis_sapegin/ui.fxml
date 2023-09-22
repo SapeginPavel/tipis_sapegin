@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
+   <children>
+      <MenuBar layoutY="1.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onClickMenuClose" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Run">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickBuildGraphs" text="Build grphics" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <LineChart fx:id="lch1" layoutX="122.0" layoutY="67.0" prefHeight="38.0" prefWidth="635.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis minorTickCount="1" minorTickLength="1.0" side="LEFT" tickLabelGap="1.0" tickLength="1.0" upperBound="1.0" />
+        </yAxis>
+      </LineChart>
+   </children>
+</Pane>
