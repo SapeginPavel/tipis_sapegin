@@ -48,16 +48,18 @@ public class Controller {
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("sin(x)");
-        ObservableList<XYChart.Data> datas = FXCollections.observableArrayList();
-        for (int i=0; i<20; i++){
-            datas.add(new XYChart.Data(i,Math.sin(i)));
+        ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
+        for (int i = 0; i < 20; i++){
+            data.add(new XYChart.Data(i, Math.sin(i)));
         }
 
-        series1.setData(datas);
+        series1.setData(data);
 
         lineChart.getData().add(series1);
 
         mainPane.getChildren().add(lineChart);
+
+
 
     }
 
