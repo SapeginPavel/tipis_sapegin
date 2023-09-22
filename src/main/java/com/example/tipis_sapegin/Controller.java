@@ -7,9 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
@@ -57,11 +55,21 @@ public class Controller {
 //
 //        series.setData(data);
 
+        int maxX = 50;
+        try { //попытка снять maxX с графика
+            NumberAxis axis = (NumberAxis) lch1.getXAxis();
+            maxX = (int) axis.getUpperBound();
+        } catch (Exception e) {
+
+        }
+
         XYChart.Series s1 = CreateSeriesUtil.createSinusSeries(50, 1);
         lch1.getData().add(s1);
 
         XYChart.Series s2 = CreateSeriesUtil.createSinusSeries(50, 5);
         lch2.getData().add(s2);
+
+
 
     }
 
