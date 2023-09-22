@@ -55,11 +55,7 @@ public class Controller {
 
         series1.setData(data);
 
-        lineChart.getData().add(series1);
-
-        mainPane.getChildren().add(lineChart);
-
-
+        lch1.getData().add(series1);
 
     }
 

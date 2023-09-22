@@ -37,7 +37,7 @@
       </MenuBar>
       <LineChart fx:id="lch1" layoutX="122.0" layoutY="67.0" prefHeight="38.0" prefWidth="635.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis minorTickCount="1" minorTickLength="1.0" side="LEFT" tickLabelGap="1.0" tickLength="1.0" upperBound="1.0" />
