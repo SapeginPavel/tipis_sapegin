@@ -30,7 +30,8 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Run">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onClickBuildGraphs" text="Build grphics" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickBuildSinusGraphs" text="Build sinus graphics" />
+                  <MenuItem fx:id="onClcl" mnemonicParsing="false" onAction="#onClickBuildMeanderGraphs" text="Build meander graphics" />
                </items>
             </Menu>
         </menus>
