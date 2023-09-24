@@ -32,6 +32,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClickBuildSinusGraphs" text="Build sinus graphics" />
                   <MenuItem fx:id="onClcl" mnemonicParsing="false" onAction="#onClickBuildMeanderGraphs" text="Build meander graphics" />
+                  <MenuItem fx:id="onClcl1" mnemonicParsing="false" onAction="#onClickClearCharts" text="Clear charts" />
                </items>
             </Menu>
         </menus>

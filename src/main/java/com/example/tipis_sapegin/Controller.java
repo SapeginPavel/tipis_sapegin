@@ -40,7 +40,7 @@ public class Controller {
     void onClickBuildSinusGraphs(ActionEvent event) {
 
         //setAutoRanging(false)
-        int maxX = 3;
+        int maxX = 3; //todo: реализовать произвольный выбор конца
 
         lch1.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 1));
         lch2.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 2));
@@ -58,6 +58,14 @@ public class Controller {
         lch2.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 2));
         lch3.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 4));
         lch4.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 8));
+    }
+
+    @FXML
+    void onClickClearCharts(ActionEvent event) {
+        lch1.getData().clear();
+        lch2.getData().clear();
+        lch3.getData().clear();
+        lch4.getData().clear();
     }
 
     @FXML
