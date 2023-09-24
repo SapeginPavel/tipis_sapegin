@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
@@ -27,7 +28,7 @@ public class Controller {
     private Pane mainPane;
 
     @FXML
-    private LineChart<?, ?> lch1;
+    private LineChart lch1;
 
     @FXML
     private LineChart<?, ?> lch2;
@@ -51,6 +52,8 @@ public class Controller {
         for (int i = 0; i < lineCharts.size(); i++) {
             lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
         }
+
+
     }
 
     @FXML
@@ -65,6 +68,14 @@ public class Controller {
         for (LineChart l : lineCharts) {
             l.getData().clear();
         }
+    }
+
+    void setLabelsValues() {
+//        labelFreq1.setText(Integer.toString(Options.getFrequencies()[1]));
+
+        ObservableList<XYChart.Series> lists = lch1.getData();
+        for (XYChart.Series list : lists) { list.getName(); }
+
     }
 
     @FXML
