@@ -23,6 +23,7 @@ public class CreateSeriesUtil {
         }
 
         XYChart.Series series = new XYChart.Series();
+        series.setName(Integer.toString(sinusFrequency));
         series.setData(data);
 
         return series;

@@ -1,14 +1,21 @@
 package com.example.tipis_sapegin;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 public class Controller {
+
+    //todo: реализовать произвольный выбор конца
+
+    List<LineChart> lineCharts = new ArrayList<>(4);
 
     @FXML
     private ResourceBundle resources;
@@ -32,44 +39,45 @@ public class Controller {
     private LineChart<?, ?> lch4;
 
     @FXML
+    private Label labelFreq1;
+
+    @FXML
     void onClickMenuClose(ActionEvent event) {
         System.exit(0);
     }
 
     @FXML
     void onClickBuildSinusGraphs(ActionEvent event) {
-
-        //setAutoRanging(false)
-        int maxX = 3; //todo: реализовать произвольный выбор конца
-
-        lch1.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 1));
-        lch2.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 2));
-        lch3.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 4));
-        lch4.getData().add(CreateSeriesUtil.createSinusSeries(maxX, 8));
-
+        for (int i = 0; i < lineCharts.size(); i++) {
+            lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
+        }
     }
 
     @FXML
     void onClickBuildMeanderGraphs(ActionEvent event) {
-
-        int maxX = 3;
-
-        lch1.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 1));
-        lch2.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 2));
-        lch3.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 4));
-        lch4.getData().add(CreateSeriesUtil.createMeanderSeries(maxX, 8));
+        for (int i = 0; i < lineCharts.size(); i++) {
+            lineCharts.get(i).getData().add(CreateSeriesUtil.createMeanderSeries(Options.getMaxX(), Options.getFrequencies()[i]));
+        }
     }
 
     @FXML
     void onClickClearCharts(ActionEvent event) {
-        lch1.getData().clear();
-        lch2.getData().clear();
-        lch3.getData().clear();
-        lch4.getData().clear();
+        for (LineChart l : lineCharts) {
+            l.getData().clear();
+        }
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws Exception {
+        lineCharts.add(lch1);
+        lineCharts.add(lch2);
+        lineCharts.add(lch3);
+        lineCharts.add(lch4);
+
+        if (lineCharts.size() != Options.getFrequencies().length) {
+            throw new Exception("___The number of graphs drawn does not correspond to the number of specified frequencies___");
+        }
+
         assert mainPane != null : "fx:id=\"mainPane\" was not injected: check your FXML file 'ui.fxml'.";
 
     }
