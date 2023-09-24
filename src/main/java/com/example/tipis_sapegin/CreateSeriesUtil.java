@@ -56,6 +56,7 @@ public class CreateSeriesUtil {
         }
 
         XYChart.Series series = new XYChart.Series();
+        series.setName(Integer.toString(meanderFrequency));
         series.setData(data);
 
         return series;
