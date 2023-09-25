@@ -18,4 +18,9 @@ public class Options {
     public static int[] getFrequencies() {
         return frequencies;
     }
+
+
+    public static void setSampleRate(int sampleRate) {
+        Options.sampleRate = sampleRate;
+    }
 }

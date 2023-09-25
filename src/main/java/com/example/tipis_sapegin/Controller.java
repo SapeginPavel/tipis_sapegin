@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
@@ -29,6 +30,9 @@ public class Controller {
 
     @FXML
     private Pane mainPane;
+
+    @FXML
+    private Pane windowSetSampleRate;
 
     @FXML
     private LineChart lch1;
@@ -103,6 +107,22 @@ public class Controller {
         setLabelsValues(false);
     }
 
+    @FXML
+    void onClickChangeSampleRate(ActionEvent event) {
+        windowSetSampleRate.setVisible(true);
+    }
+
+    @FXML
+    void onClickDiscardNewSampleRate(ActionEvent event) {
+        windowSetSampleRate.setVisible(false);
+    }
+
+    @FXML
+    void onClickApplyNewSampleRate(ActionEvent event) {
+        windowSetSampleRate.setVisible(false);
+        //todo: реализовать изменение
+    }
+
     void setLabelsValues(boolean bool) {
         if (bool) {
             for (int i = 0; i < labels.size(); i++) {
@@ -163,6 +183,8 @@ public class Controller {
         lineChartsRange.add(lchRange2);
         lineChartsRange.add(lchRange3);
         lineChartsRange.add(lchRange4);
+
+        windowSetSampleRate.setVisible(false);
 
         if (lineCharts.size() != Options.getFrequencies().length) {
             throw new Exception("___The number of graphs drawn does not correspond to the number of specified frequencies___");

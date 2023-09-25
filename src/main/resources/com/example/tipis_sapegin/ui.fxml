@@ -2,10 +2,12 @@
 
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,21 +21,16 @@
               <MenuItem mnemonicParsing="false" onAction="#onClickMenuClose" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Run">
+            <Menu mnemonicParsing="false" text="Build">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClickBuildSinusGraphs" text="Build sinus graphics" />
                   <MenuItem fx:id="onClcl" mnemonicParsing="false" onAction="#onClickBuildMeanderGraphs" text="Build meander graphics" />
                   <MenuItem fx:id="onClcl1" mnemonicParsing="false" onAction="#onClickClearCharts" text="Clear charts" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Options">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickChangeSampleRate" text="To change sample rate" />
                </items>
             </Menu>
         </menus>
@@ -150,5 +147,31 @@
             <Label fx:id="labelFreq4" prefHeight="150.0" prefWidth="51.0" />
          </children>
       </VBox>
+      <Label layoutX="183.0" layoutY="42.0" text="Графики входных сигналов">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="712.0" layoutY="40.0" text="Графики спектров">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Label>
+      <Pane fx:id="windowSetSampleRate" layoutX="519.0" layoutY="176.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #FFFFE0; -fx-border-color: #000000;">
+         <children>
+            <VBox alignment="CENTER" layoutX="10.0" layoutY="36.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="278.0" text="Введите новое значение sample rate:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="26.0" prefWidth="234.0" />
+               </children>
+            </VBox>
+            <Button layoutX="18.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickDiscardNewSampleRate" text="Discard" />
+            <Button layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickApplyNewSampleRate" text="Apply" />
+         </children>
+      </Pane>
    </children>
 </Pane>
