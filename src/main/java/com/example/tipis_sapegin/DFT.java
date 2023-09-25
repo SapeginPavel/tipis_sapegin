@@ -1,16 +1,15 @@
 package com.example.tipis_sapegin;
 
+import java.util.Arrays;
+
 public class DFT {
     static class Complex {
         public double im = 0;
         public double real = 0;
     }
 
-    public static double[][] getXYForSinus(int sinusFrequency, int sampleRate) throws Exception {
+    public static double[][] getXYForSinus(int sinusFrequency, int sampleRate) {
         int maxX = 1;
-        if (sampleRate <= 1) {
-            throw new Exception("Incorrect sampleRate");
-        }
         double step = (maxX + 0.0) / sampleRate; //sampleRate == numOfPoints
         double x = 0.0;
         double[][] xyArr = new double[2][sampleRate];
@@ -19,6 +18,28 @@ public class DFT {
             xyArr[1][i] = Math.sin(x * 2 * Math.PI * sinusFrequency);
             x += step;
         }
+        return xyArr;
+    }
+
+    public static double[][] getXYForMeander(int meanderFrequency, int sampleRate) {
+        int maxX = 1;
+        double step = (maxX + 0.0) / sampleRate; //sampleRate == numOfPoints
+        double x = 0.0;
+        double distanceBetweenJumps = 1.0 / meanderFrequency / 2;
+        double nextJumpX = 0 + distanceBetweenJumps;
+        double[][] xyArr = new double[2][sampleRate];
+
+        for (int i = 0; i < sampleRate; i++) {
+            xyArr[0][i] = x;
+            xyArr[1][i] = (x <= nextJumpX) ? 1 : 0;
+            x += step;
+            if (x > nextJumpX + distanceBetweenJumps) {
+                while (nextJumpX < x) {
+                    nextJumpX += distanceBetweenJumps;
+                }
+            }
+        }
+
         return xyArr;
     }
 

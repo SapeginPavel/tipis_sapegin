@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 public class Controller {
 
     //todo: реализовать произвольный выбор конца
+    //todo: проверить частоту дискретизации = 1, 2
 
     List<LineChart> lineCharts = new ArrayList<>(4);
     List<LineChart> lineChartsRange = new ArrayList<>(4);
@@ -75,10 +76,8 @@ public class Controller {
         for (int i = 0; i < lineCharts.size(); i++) {
             lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
         }
-        ObservableList list = CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData();
-        System.out.println(list.size());
-//        System.out.println(((XYChart.Data)CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData().get(0)).getXValue());
-//        System.out.println(((XYChart.Data)CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData().get(10)).getXValue());
+//        ObservableList list = CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData();
+//        System.out.println(list.size());
         setLabelsValues(true);
         buildSinusRangeGraphs();
     }
@@ -89,11 +88,16 @@ public class Controller {
             lineCharts.get(i).getData().add(CreateSeriesUtil.createMeanderSeries(Options.getMaxX(), Options.getFrequencies()[i]));
         }
         setLabelsValues(true);
+        buildMeanderRangeGraphs();
     }
 
     @FXML
     void onClickClearCharts(ActionEvent event) {
         for (LineChart l : lineCharts) {
+            l.getData().clear();
+        }
+
+        for (LineChart l : lineChartsRange) {
             l.getData().clear();
         }
         setLabelsValues(false);
@@ -113,11 +117,18 @@ public class Controller {
         }
     }
 
-    void buildSinusRangeGraphs() throws Exception {
-        int sampleRate = 20;
+    void buildSinusRangeGraphs() {
         for (int i = 0; i < lineChartsRange.size(); i++) {
-            double[][] xyArr =  DFT.getXYForSinus(Options.getFrequencies()[i], sampleRate);
-            double[] y = DFT.dft(xyArr[1], sampleRate);
+            double[][] xyArr =  DFT.getXYForSinus(Options.getFrequencies()[i], Options.getSampleRate());
+            double[] y = DFT.dft(xyArr[1], Options.getSampleRate());
+            lineChartsRange.get(i).getData().add(CreateSeriesUtil.createSeriesForSinusRange(y));
+        }
+    }
+
+    void buildMeanderRangeGraphs() {
+        for (int i = 0; i < lineChartsRange.size(); i++) {
+            double[][] xyArr =  DFT.getXYForMeander(Options.getFrequencies()[i], Options.getSampleRate());
+            double[] y = DFT.dft(xyArr[1], Options.getSampleRate());
             lineChartsRange.get(i).getData().add(CreateSeriesUtil.createSeriesForSinusRange(y));
         }
     }
@@ -132,6 +143,10 @@ public class Controller {
         assert lch2 != null : "fx:id=\"lch2\" was not injected: check your FXML file 'ui.fxml'.";
         assert lch3 != null : "fx:id=\"lch3\" was not injected: check your FXML file 'ui.fxml'.";
         assert lch4 != null : "fx:id=\"lch4\" was not injected: check your FXML file 'ui.fxml'.";
+        assert lchRange1 != null : "fx:id=\"lchRange1\" was not injected: check your FXML file 'ui.fxml'.";
+        assert lchRange2 != null : "fx:id=\"lchRange2\" was not injected: check your FXML file 'ui.fxml'.";
+        assert lchRange3 != null : "fx:id=\"lchRange3\" was not injected: check your FXML file 'ui.fxml'.";
+        assert lchRange4 != null : "fx:id=\"lchRange4\" was not injected: check your FXML file 'ui.fxml'.";
         assert mainPane != null : "fx:id=\"mainPane\" was not injected: check your FXML file 'ui.fxml'.";
 
         lineCharts.add(lch1);

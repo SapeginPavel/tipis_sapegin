@@ -35,12 +35,7 @@ public class CreateSeriesUtil {
         double x = 0;
         int y = 1;
 
-        double[] xx = new double[stepAmount];
-        double[] yy = new double[stepAmount];
-
         for (int i = 0; i < stepAmount; i++) {
-            xx[i] = x;
-            yy[i] =  y;
             data.add(new XYChart.Data(x, y));
 
             if (i % 2 == 0) {
