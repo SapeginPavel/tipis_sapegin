@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1081.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
    <children>
       <MenuBar layoutY="1.0">
         <menus>
@@ -38,7 +38,7 @@
             </Menu>
         </menus>
       </MenuBar>
-      <VBox layoutX="79.0" layoutY="43.0" prefHeight="444.0" prefWidth="862.0">
+      <VBox layoutX="79.0" layoutY="43.0" prefHeight="602.0" prefWidth="565.0">
          <children>
             <LineChart fx:id="lch1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
               <xAxis>
@@ -94,5 +94,57 @@
       <Label fx:id="labelFreq2" layoutX="10.0" layoutY="248.0" prefHeight="26.0" prefWidth="51.0" />
       <Label fx:id="labelFreq3" layoutX="10.0" layoutY="398.0" prefHeight="26.0" prefWidth="51.0" />
       <Label fx:id="labelFreq4" layoutX="10.0" layoutY="548.0" prefHeight="26.0" prefWidth="51.0" />
+      <VBox layoutX="667.0" layoutY="48.0" prefHeight="602.0" prefWidth="565.0">
+         <children>
+            <LineChart fx:id="lchRange1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
+               <xAxis>
+                  <NumberAxis minorTickCount="0" minorTickLength="0.0" side="BOTTOM" tickLabelGap="2.0" tickLength="3.0" tickUnit="0.0" upperBound="5.0" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis lowerBound="-1.0" minorTickCount="1" minorTickLength="0.0" minorTickVisible="false" tickLabelGap="5.0" tickLabelsVisible="false" tickLength="3.0" tickUnit="0.0" upperBound="1.0">
+                     <tickLabelFont>
+                        <Font name="Times New Roman" size="14.0" />
+                     </tickLabelFont>
+                  </NumberAxis>
+               </yAxis>
+            </LineChart>
+            <LineChart fx:id="lchRange2" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
+               <xAxis>
+                  <NumberAxis minorTickCount="0" minorTickLength="0.0" side="BOTTOM" tickLabelGap="2.0" tickLength="3.0" tickUnit="0.0" upperBound="5.0" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis lowerBound="-1.0" minorTickCount="1" minorTickLength="0.0" minorTickVisible="false" tickLabelGap="5.0" tickLabelsVisible="false" tickLength="3.0" tickUnit="0.0" upperBound="1.0">
+                     <tickLabelFont>
+                        <Font name="Times New Roman" size="14.0" />
+                     </tickLabelFont>
+                  </NumberAxis>
+               </yAxis>
+            </LineChart>
+            <LineChart fx:id="lchRange3" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
+               <xAxis>
+                  <NumberAxis minorTickCount="0" minorTickLength="0.0" side="BOTTOM" tickLabelGap="2.0" tickLength="3.0" tickUnit="0.0" upperBound="5.0" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis lowerBound="-1.0" minorTickCount="1" minorTickLength="0.0" minorTickVisible="false" tickLabelGap="5.0" tickLabelsVisible="false" tickLength="3.0" tickUnit="0.0" upperBound="1.0">
+                     <tickLabelFont>
+                        <Font name="Times New Roman" size="14.0" />
+                     </tickLabelFont>
+                  </NumberAxis>
+               </yAxis>
+            </LineChart>
+            <LineChart fx:id="lchRange4" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
+               <xAxis>
+                  <NumberAxis minorTickCount="0" minorTickLength="0.0" side="BOTTOM" tickLabelGap="2.0" tickLength="3.0" tickUnit="0.0" upperBound="5.0" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis lowerBound="-1.0" minorTickCount="1" minorTickLength="0.0" minorTickVisible="false" tickLabelGap="5.0" tickLabelsVisible="false" tickLength="3.0" tickUnit="0.0" upperBound="1.0">
+                     <tickLabelFont>
+                        <Font name="Times New Roman" size="14.0" />
+                     </tickLabelFont>
+                  </NumberAxis>
+               </yAxis>
+            </LineChart>
+         </children>
+      </VBox>
    </children>
 </Pane>

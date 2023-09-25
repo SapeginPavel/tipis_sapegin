@@ -17,6 +17,7 @@ public class Controller {
     //todo: реализовать произвольный выбор конца
 
     List<LineChart> lineCharts = new ArrayList<>(4);
+    List<LineChart> lineChartsRange = new ArrayList<>(4);
     List<Label> labels = new ArrayList<>(4);
 
     @FXML
@@ -41,6 +42,18 @@ public class Controller {
     private LineChart lch4;
 
     @FXML
+    private LineChart lchRange1;
+
+    @FXML
+    private LineChart lchRange2;
+
+    @FXML
+    private LineChart lchRange3;
+
+    @FXML
+    private LineChart lchRange4;
+
+    @FXML
     private Label labelFreq1;
 
     @FXML
@@ -58,11 +71,16 @@ public class Controller {
     }
 
     @FXML
-    void onClickBuildSinusGraphs(ActionEvent event) {
+    void onClickBuildSinusGraphs(ActionEvent event) throws Exception {
         for (int i = 0; i < lineCharts.size(); i++) {
             lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
         }
+        ObservableList list = CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData();
+        System.out.println(list.size());
+//        System.out.println(((XYChart.Data)CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData().get(0)).getXValue());
+//        System.out.println(((XYChart.Data)CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData().get(10)).getXValue());
         setLabelsValues(true);
+        buildSinusRangeGraphs();
     }
 
     @FXML
@@ -93,7 +111,15 @@ public class Controller {
                 l.setText("");
             }
         }
+    }
 
+    void buildSinusRangeGraphs() throws Exception {
+        int sampleRate = 20;
+        for (int i = 0; i < lineChartsRange.size(); i++) {
+            double[][] xyArr =  DFT.getXYForSinus(Options.getFrequencies()[i], sampleRate);
+            double[] y = DFT.dft(xyArr[1], sampleRate);
+            lineChartsRange.get(i).getData().add(CreateSeriesUtil.createSeriesForSinusRange(y));
+        }
     }
 
     @FXML
@@ -117,6 +143,11 @@ public class Controller {
         labels.add(labelFreq2);
         labels.add(labelFreq3);
         labels.add(labelFreq4);
+
+        lineChartsRange.add(lchRange1);
+        lineChartsRange.add(lchRange2);
+        lineChartsRange.add(lchRange3);
+        lineChartsRange.add(lchRange4);
 
         if (lineCharts.size() != Options.getFrequencies().length) {
             throw new Exception("___The number of graphs drawn does not correspond to the number of specified frequencies___");
