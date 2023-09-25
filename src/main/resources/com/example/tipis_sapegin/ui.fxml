@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
    <children>
       <MenuBar layoutY="1.0">
         <menus>
@@ -38,7 +38,7 @@
             </Menu>
         </menus>
       </MenuBar>
-      <VBox layoutX="79.0" layoutY="43.0" prefHeight="602.0" prefWidth="565.0">
+      <VBox layoutX="80.0" layoutY="70.0" prefHeight="600.0" prefWidth="550.0">
          <children>
             <LineChart fx:id="lch1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
               <xAxis>
@@ -90,11 +90,7 @@
             </LineChart>
          </children>
       </VBox>
-      <Label fx:id="labelFreq1" layoutX="10.0" layoutY="97.0" prefHeight="26.0" prefWidth="51.0" />
-      <Label fx:id="labelFreq2" layoutX="10.0" layoutY="248.0" prefHeight="26.0" prefWidth="51.0" />
-      <Label fx:id="labelFreq3" layoutX="10.0" layoutY="398.0" prefHeight="26.0" prefWidth="51.0" />
-      <Label fx:id="labelFreq4" layoutX="10.0" layoutY="548.0" prefHeight="26.0" prefWidth="51.0" />
-      <VBox layoutX="667.0" layoutY="48.0" prefHeight="602.0" prefWidth="565.0">
+      <VBox layoutX="650.0" layoutY="70.0" prefHeight="602.0" prefWidth="550.0">
          <children>
             <LineChart fx:id="lchRange1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
                <xAxis>
@@ -144,6 +140,14 @@
                   </NumberAxis>
                </yAxis>
             </LineChart>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="15.0" layoutY="70.0" prefHeight="600.0" prefWidth="70.0">
+         <children>
+            <Label fx:id="labelFreq1" prefHeight="150.0" prefWidth="51.0" />
+            <Label fx:id="labelFreq2" prefHeight="150.0" prefWidth="51.0" />
+            <Label fx:id="labelFreq3" prefHeight="150.0" prefWidth="51.0" />
+            <Label fx:id="labelFreq4" prefHeight="150.0" prefWidth="51.0" />
          </children>
       </VBox>
    </children>
