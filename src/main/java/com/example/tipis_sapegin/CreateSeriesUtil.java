@@ -56,8 +56,9 @@ public class CreateSeriesUtil {
 
     public static XYChart.Series createSeriesForSinusRange(double[] y) { //int maxX, int sinusFrequency
         ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
+        data.add(new XYChart.Data(0, 0));
         for (int i = 0; i < y.length; i++) {
-            data.add(new XYChart.Data(i, y[i]));
+            data.add(new XYChart.Data(i + 1, y[i]));
         }
         XYChart.Series series = new XYChart.Series();
         series.setData(data);

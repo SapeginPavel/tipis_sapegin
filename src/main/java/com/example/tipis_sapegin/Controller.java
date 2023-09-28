@@ -9,8 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 public class Controller {
@@ -27,6 +26,31 @@ public class Controller {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Button buttonBuildGraphs;
+
+    @FXML
+    private Button buttonClearGraphs;
+
+    @FXML
+    private TextField fieldSampleRate;
+
+    @FXML
+    private ToggleGroup graphs;
+
+    @FXML
+    private Label labelFreq1;
+
+    @FXML
+    private Label labelFreq2;
+
+    @FXML
+    private Label labelFreq3;
+
+    @FXML
+    private Label labelFreq4;
+
 
     @FXML
     private Pane mainPane;
@@ -59,44 +83,26 @@ public class Controller {
     private LineChart lchRange4;
 
     @FXML
-    private Label labelFreq1;
+    private RadioButton radioButtonGraphsMeander;
 
     @FXML
-    private Label labelFreq2;
+    private RadioButton radioButtonGraphsSinus;
 
-    @FXML
-    private Label labelFreq3;
 
-    @FXML
-    private Label labelFreq4;
+
+
+    //---------------- Функции ----------------
+
+
+
+
 
     @FXML
     void onClickMenuClose(ActionEvent event) {
         System.exit(0);
     }
 
-    @FXML
-    void onClickBuildSinusGraphs(ActionEvent event) throws Exception {
-        for (int i = 0; i < lineCharts.size(); i++) {
-            lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
-        }
-//        ObservableList list = CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[0]).getData();
-//        System.out.println(list.size());
-        setLabelsValues(true);
-        buildSinusRangeGraphs();
-    }
-
-    @FXML
-    void onClickBuildMeanderGraphs(ActionEvent event) {
-        for (int i = 0; i < lineCharts.size(); i++) {
-            lineCharts.get(i).getData().add(CreateSeriesUtil.createMeanderSeries(Options.getMaxX(), Options.getFrequencies()[i]));
-        }
-        setLabelsValues(true);
-        buildMeanderRangeGraphs();
-    }
-
-    @FXML
-    void onClickClearCharts(ActionEvent event) {
+    void clearCharts() {
         for (LineChart l : lineCharts) {
             l.getData().clear();
         }
@@ -109,7 +115,12 @@ public class Controller {
 
     @FXML
     void onClickChangeSampleRate(ActionEvent event) {
+        showWindowSetSampleRate();
+    }
+
+    void showWindowSetSampleRate() {
         windowSetSampleRate.setVisible(true);
+        fieldSampleRate.setText(Integer.toString(Options.getSampleRate()));
     }
 
     @FXML
@@ -120,7 +131,32 @@ public class Controller {
     @FXML
     void onClickApplyNewSampleRate(ActionEvent event) {
         windowSetSampleRate.setVisible(false);
-        //todo: реализовать изменение
+        int newSampleRate = Integer.parseInt(fieldSampleRate.getText());
+        Options.setSampleRate(newSampleRate);
+        clearCharts();
+    }
+
+
+    @FXML
+    void onClickButtonBuildGraphs(ActionEvent event) {
+        if (radioButtonGraphsSinus.isSelected()) {
+            for (int i = 0; i < lineCharts.size(); i++) {
+                lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
+            }
+            buildSinusRangeGraphs();
+        }
+        if (radioButtonGraphsMeander.isSelected()) {
+            for (int i = 0; i < lineCharts.size(); i++) {
+                lineCharts.get(i).getData().add(CreateSeriesUtil.createMeanderSeries(Options.getMaxX(), Options.getFrequencies()[i]));
+            }
+            buildMeanderRangeGraphs();
+        }
+        setLabelsValues(true);
+    }
+
+    @FXML
+    void onClickButtonClearGraphs(ActionEvent event) {
+        clearCharts();
     }
 
     void setLabelsValues(boolean bool) {
@@ -132,7 +168,7 @@ public class Controller {
             }
         } else {
             for (Label l : labels) {
-                l.setText("");
+                l.setText("- Hz");
             }
         }
     }
@@ -155,6 +191,10 @@ public class Controller {
 
     @FXML
     void initialize() throws Exception {
+        assert buttonBuildGraphs != null : "fx:id=\"buttonBuildGraphs\" was not injected: check your FXML file 'ui.fxml'.";
+        assert buttonClearGraphs != null : "fx:id=\"buttonClearGraphs\" was not injected: check your FXML file 'ui.fxml'.";
+        assert fieldSampleRate != null : "fx:id=\"fieldSampleRate\" was not injected: check your FXML file 'ui.fxml'.";
+        assert graphs != null : "fx:id=\"graphs\" was not injected: check your FXML file 'ui.fxml'.";
         assert labelFreq1 != null : "fx:id=\"labelFreq1\" was not injected: check your FXML file 'ui.fxml'.";
         assert labelFreq2 != null : "fx:id=\"labelFreq2\" was not injected: check your FXML file 'ui.fxml'.";
         assert labelFreq3 != null : "fx:id=\"labelFreq3\" was not injected: check your FXML file 'ui.fxml'.";
@@ -168,6 +208,10 @@ public class Controller {
         assert lchRange3 != null : "fx:id=\"lchRange3\" was not injected: check your FXML file 'ui.fxml'.";
         assert lchRange4 != null : "fx:id=\"lchRange4\" was not injected: check your FXML file 'ui.fxml'.";
         assert mainPane != null : "fx:id=\"mainPane\" was not injected: check your FXML file 'ui.fxml'.";
+        assert radioButtonGraphsMeander != null : "fx:id=\"radioButtonGraphsMeander\" was not injected: check your FXML file 'ui.fxml'.";
+        assert radioButtonGraphsSinus != null : "fx:id=\"radioButtonGraphsSinus\" was not injected: check your FXML file 'ui.fxml'.";
+        assert windowSetSampleRate != null : "fx:id=\"windowSetSampleRate\" was not injected: check your FXML file 'ui.fxml'.";
+
 
         lineCharts.add(lch1);
         lineCharts.add(lch2);

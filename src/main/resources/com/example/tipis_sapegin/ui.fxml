@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -7,35 +8,33 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
+<Pane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tipis_sapegin.Controller">
    <children>
       <MenuBar layoutY="1.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#onClickMenuClose" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#onClickMenuClose" text="Закрыть" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Build">
+            <Menu mnemonicParsing="false" text="Настройки">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onClickBuildSinusGraphs" text="Build sinus graphics" />
-                  <MenuItem fx:id="onClcl" mnemonicParsing="false" onAction="#onClickBuildMeanderGraphs" text="Build meander graphics" />
-                  <MenuItem fx:id="onClcl1" mnemonicParsing="false" onAction="#onClickClearCharts" text="Clear charts" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Options">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onClickChangeSampleRate" text="To change sample rate" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickChangeSampleRate" text="Частота дискретизации" />
                </items>
             </Menu>
         </menus>
       </MenuBar>
-      <VBox layoutX="80.0" layoutY="70.0" prefHeight="600.0" prefWidth="550.0">
+      <VBox layoutX="100.0" layoutY="70.0" prefHeight="600.0" prefWidth="450.0">
          <children>
             <LineChart fx:id="lch1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
               <xAxis>
@@ -87,7 +86,7 @@
             </LineChart>
          </children>
       </VBox>
-      <VBox layoutX="650.0" layoutY="70.0" prefHeight="602.0" prefWidth="550.0">
+      <VBox layoutX="560.0" layoutY="70.0" prefHeight="600.0" prefWidth="450.0">
          <children>
             <LineChart fx:id="lchRange1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
                <xAxis>
@@ -141,18 +140,18 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="15.0" layoutY="70.0" prefHeight="600.0" prefWidth="70.0">
          <children>
-            <Label fx:id="labelFreq1" prefHeight="150.0" prefWidth="51.0" />
-            <Label fx:id="labelFreq2" prefHeight="150.0" prefWidth="51.0" />
-            <Label fx:id="labelFreq3" prefHeight="150.0" prefWidth="51.0" />
-            <Label fx:id="labelFreq4" prefHeight="150.0" prefWidth="51.0" />
+            <Label fx:id="labelFreq1" prefHeight="150.0" prefWidth="51.0" text="- Hz" />
+            <Label fx:id="labelFreq2" prefHeight="150.0" prefWidth="51.0" text="- Hz" />
+            <Label fx:id="labelFreq3" prefHeight="150.0" prefWidth="51.0" text="- Hz" />
+            <Label fx:id="labelFreq4" prefHeight="150.0" prefWidth="51.0" text="- Hz" />
          </children>
       </VBox>
-      <Label layoutX="183.0" layoutY="42.0" text="Графики входных сигналов">
+      <Label layoutX="150.0" layoutY="40.0" text="Графики входных сигналов">
          <font>
             <Font name="Times New Roman" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="712.0" layoutY="40.0" text="Графики спектров">
+      <Label layoutX="620.0" layoutY="40.0" text="Графики спектров">
          <font>
             <Font name="Times New Roman" size="25.0" />
          </font>
@@ -166,12 +165,65 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="26.0" prefWidth="234.0" />
+                  <TextField fx:id="fieldSampleRate" prefHeight="26.0" prefWidth="234.0" />
                </children>
             </VBox>
             <Button layoutX="18.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickDiscardNewSampleRate" text="Discard" />
             <Button layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickApplyNewSampleRate" text="Apply" />
          </children>
       </Pane>
+      <VBox layoutX="1050.0" layoutY="40.0" prefHeight="163.0" prefWidth="209.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
+               <children>
+                  <Label prefHeight="49.0" prefWidth="189.0" text="Панель управления:">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </VBox>
+            <GridPane prefHeight="94.0" prefWidth="210.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <RadioButton fx:id="radioButtonGraphsSinus" mnemonicParsing="false" prefHeight="30.0" selected="true" text="Синус">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="graphs" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonGraphsMeander" mnemonicParsing="false" prefHeight="30.0" text="Меандр" toggleGroup="$graphs" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <Button fx:id="buttonBuildGraphs" mnemonicParsing="false" onAction="#onClickButtonBuildGraphs" text="Построить" GridPane.columnIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="buttonClearGraphs" mnemonicParsing="false" onAction="#onClickButtonClearGraphs" text="Очистить" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <Label layoutX="5.0" layoutY="40.0" prefHeight="49.0" prefWidth="97.0" text="Частота сигнала" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
