@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -27,11 +28,6 @@
               <MenuItem mnemonicParsing="false" onAction="#onClickMenuClose" text="Закрыть" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Настройки">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onClickChangeSampleRate" text="Частота дискретизации" />
-               </items>
-            </Menu>
         </menus>
       </MenuBar>
       <VBox layoutX="100.0" layoutY="70.0" prefHeight="600.0" prefWidth="450.0">
@@ -156,23 +152,7 @@
             <Font name="Times New Roman" size="25.0" />
          </font>
       </Label>
-      <Pane fx:id="windowSetSampleRate" layoutX="519.0" layoutY="176.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #FFFFE0; -fx-border-color: #000000;">
-         <children>
-            <VBox alignment="CENTER" layoutX="10.0" layoutY="36.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="278.0" text="Введите новое значение sample rate:" textAlignment="CENTER">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="fieldSampleRate" prefHeight="26.0" prefWidth="234.0" />
-               </children>
-            </VBox>
-            <Button layoutX="18.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickDiscardNewSampleRate" text="Discard" />
-            <Button layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onClickApplyNewSampleRate" text="Apply" />
-         </children>
-      </Pane>
-      <VBox layoutX="1050.0" layoutY="40.0" prefHeight="163.0" prefWidth="209.0">
+      <VBox layoutX="1050.0" layoutY="40.0" prefHeight="180.0" prefWidth="209.0">
          <children>
             <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
                <children>
@@ -210,14 +190,24 @@
                         <Font name="Times New Roman" size="15.0" />
                      </font>
                   </RadioButton>
-                  <Button fx:id="buttonBuildGraphs" mnemonicParsing="false" onAction="#onClickButtonBuildGraphs" text="Построить" GridPane.columnIndex="1">
+                  <Button fx:id="buttonBuildGraphs" mnemonicParsing="false" onAction="#onClickButtonBuildGraphs" prefHeight="25.0" prefWidth="75.0" text="Построить" textAlignment="CENTER" GridPane.columnIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="buttonClearGraphs" mnemonicParsing="false" onAction="#onClickButtonClearGraphs" text="Очистить" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="buttonClearGraphs" mnemonicParsing="false" onAction="#onClickButtonClearGraphs" prefHeight="25.0" prefWidth="75.0" text="Очистить" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
+            <FlowPane prefHeight="38.0" prefWidth="210.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="123.0" text="Частота дискретизации" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fieldSampleRate" prefHeight="26.0" prefWidth="81.0" />
+               </children>
+            </FlowPane>
          </children>
       </VBox>
       <Label layoutX="5.0" layoutY="40.0" prefHeight="49.0" prefWidth="97.0" text="Частота сигнала" textAlignment="CENTER" wrapText="true">

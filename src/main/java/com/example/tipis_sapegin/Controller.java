@@ -56,9 +56,6 @@ public class Controller {
     private Pane mainPane;
 
     @FXML
-    private Pane windowSetSampleRate;
-
-    @FXML
     private LineChart lch1;
 
     @FXML
@@ -114,31 +111,14 @@ public class Controller {
     }
 
     @FXML
-    void onClickChangeSampleRate(ActionEvent event) {
-        showWindowSetSampleRate();
-    }
-
-    void showWindowSetSampleRate() {
-        windowSetSampleRate.setVisible(true);
-        fieldSampleRate.setText(Integer.toString(Options.getSampleRate()));
-    }
-
-    @FXML
-    void onClickDiscardNewSampleRate(ActionEvent event) {
-        windowSetSampleRate.setVisible(false);
-    }
-
-    @FXML
-    void onClickApplyNewSampleRate(ActionEvent event) {
-        windowSetSampleRate.setVisible(false);
-        int newSampleRate = Integer.parseInt(fieldSampleRate.getText());
-        Options.setSampleRate(newSampleRate);
-        clearCharts();
-    }
-
-
-    @FXML
-    void onClickButtonBuildGraphs(ActionEvent event) {
+    void onClickButtonBuildGraphs(ActionEvent event) throws Exception {
+        int sampleRate;
+        try {
+            sampleRate = Integer.parseInt(fieldSampleRate.getText());
+            Options.setSampleRate(sampleRate);
+        } catch (Exception e) {
+            throw new Exception("The sample rate field must not be empty or must contains integer number");
+        }
         if (radioButtonGraphsSinus.isSelected()) {
             for (int i = 0; i < lineCharts.size(); i++) {
                 lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
@@ -210,8 +190,6 @@ public class Controller {
         assert mainPane != null : "fx:id=\"mainPane\" was not injected: check your FXML file 'ui.fxml'.";
         assert radioButtonGraphsMeander != null : "fx:id=\"radioButtonGraphsMeander\" was not injected: check your FXML file 'ui.fxml'.";
         assert radioButtonGraphsSinus != null : "fx:id=\"radioButtonGraphsSinus\" was not injected: check your FXML file 'ui.fxml'.";
-        assert windowSetSampleRate != null : "fx:id=\"windowSetSampleRate\" was not injected: check your FXML file 'ui.fxml'.";
-
 
         lineCharts.add(lch1);
         lineCharts.add(lch2);
@@ -228,7 +206,7 @@ public class Controller {
         lineChartsRange.add(lchRange3);
         lineChartsRange.add(lchRange4);
 
-        windowSetSampleRate.setVisible(false);
+        fieldSampleRate.setText(Integer.toString(Options.getSampleRate()));
 
         if (lineCharts.size() != Options.getFrequencies().length) {
             throw new Exception("___The number of graphs drawn does not correspond to the number of specified frequencies___");
