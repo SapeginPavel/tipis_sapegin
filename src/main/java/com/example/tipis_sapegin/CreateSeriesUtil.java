@@ -2,11 +2,9 @@ package com.example.tipis_sapegin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.LineChart;
+import javafx.scene.Node;
 import javafx.scene.chart.XYChart;
-
-import java.util.Arrays;
-import java.util.List;
+import javafx.scene.control.Tooltip;
 
 public class CreateSeriesUtil {
 
@@ -35,6 +33,8 @@ public class CreateSeriesUtil {
         double x = 0;
         int y = 1;
 
+        data.add(new XYChart.Data(0, 0));
+
         for (int i = 0; i < stepAmount; i++) {
             data.add(new XYChart.Data(x, y));
 
@@ -54,12 +54,23 @@ public class CreateSeriesUtil {
         return series;
     }
 
-    public static XYChart.Series createSeriesForSinusRange(double[] y) { //int maxX, int sinusFrequency
+    public static XYChart.Series createSeriesForRange(double[] y) {
         ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
-        data.add(new XYChart.Data(0, 0));
         for (int i = 0; i < y.length; i++) {
-            data.add(new XYChart.Data(i + 1, y[i]));
+//            XYChart.Data da = new XYChart.Data(i, y[i] * 100);
+//            if (y[i] * 100 > 1) { //лепим подсказки только на большие игреки
+//                Node node = da.getNode();
+//                Tooltip tooltip = new Tooltip('('+da.getXValue().toString()+';'+da.getYValue().toString()+')');
+//                Tooltip.install(node, tooltip);
+//            }
+//            data.add(da);
+            data.add(new XYChart.Data(i, y[i] * 100)); //множитель - для наглядности отображения
         }
+//        data.forEach(d->{
+//            Node node = d.getNode();
+//            Tooltip tooltip = new Tooltip('('+d.getXValue().toString()+';'+d.getYValue().toString()+')');
+//            Tooltip.install(node, tooltip);
+//        });
         XYChart.Series series = new XYChart.Series();
         series.setData(data);
         return series;

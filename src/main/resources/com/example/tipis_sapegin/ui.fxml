@@ -30,9 +30,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <VBox layoutX="100.0" layoutY="70.0" prefHeight="600.0" prefWidth="450.0">
+      <VBox layoutX="80.0" layoutY="70.0" prefHeight="600.0" prefWidth="450.0">
          <children>
-            <LineChart fx:id="lch1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
+            <LineChart fx:id="lch1" cache="true" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
               <xAxis>
                 <NumberAxis minorTickCount="0" minorTickLength="0.0" side="BOTTOM" tickLabelGap="2.0" tickLength="3.0" tickUnit="0.0" upperBound="5.0" />
               </xAxis>
@@ -82,7 +82,7 @@
             </LineChart>
          </children>
       </VBox>
-      <VBox layoutX="560.0" layoutY="70.0" prefHeight="600.0" prefWidth="450.0">
+      <VBox layoutX="540.0" layoutY="70.0" prefHeight="600.0" prefWidth="500.0">
          <children>
             <LineChart fx:id="lchRange1" createSymbols="false" horizontalGridLinesVisible="false" prefHeight="32.0" prefWidth="635.0" verticalGridLinesVisible="false">
                <xAxis>
@@ -134,7 +134,7 @@
             </LineChart>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="15.0" layoutY="70.0" prefHeight="600.0" prefWidth="70.0">
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="70.0" prefHeight="600.0" prefWidth="56.0">
          <children>
             <Label fx:id="labelFreq1" prefHeight="150.0" prefWidth="51.0" text="- Hz" />
             <Label fx:id="labelFreq2" prefHeight="150.0" prefWidth="51.0" text="- Hz" />
@@ -147,12 +147,12 @@
             <Font name="Times New Roman" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="620.0" layoutY="40.0" text="Графики спектров">
+      <Label layoutX="610.0" layoutY="40.0" text="Графики спектров">
          <font>
             <Font name="Times New Roman" size="25.0" />
          </font>
       </Label>
-      <VBox layoutX="1050.0" layoutY="40.0" prefHeight="180.0" prefWidth="209.0">
+      <VBox layoutX="1060.0" layoutY="40.0" prefHeight="219.0" prefWidth="210.0">
          <children>
             <VBox alignment="CENTER" prefHeight="0.0" prefWidth="210.0">
                <children>
@@ -199,17 +199,36 @@
             </GridPane>
             <FlowPane prefHeight="38.0" prefWidth="210.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="123.0" text="Частота дискретизации" wrapText="true">
+                  <TextField fx:id="fieldSampleRate" prefHeight="26.0" prefWidth="81.0" />
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="123.0" text="Частота дискретизации" textAlignment="RIGHT" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fieldSampleRate" prefHeight="26.0" prefWidth="81.0" />
+               </children>
+            </FlowPane>
+            <FlowPane prefHeight="44.0" prefWidth="210.0">
+               <children>
+                  <RadioButton fx:id="radioButtonCreateSymbolsYes" mnemonicParsing="false" selected="true" text="Да">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="symbols" />
+                     </toggleGroup>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonCreateSymbolsNo" mnemonicParsing="false" text="Нет" toggleGroup="$symbols" />
+                  <Label prefHeight="18.0" prefWidth="29.0" />
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="80.0" text="Создавать символы?" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </FlowPane>
          </children>
       </VBox>
-      <Label layoutX="5.0" layoutY="40.0" prefHeight="49.0" prefWidth="97.0" text="Частота сигнала" textAlignment="CENTER" wrapText="true">
+      <Label layoutY="40.0" prefHeight="49.0" prefWidth="97.0" text="Частота сигнала" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>

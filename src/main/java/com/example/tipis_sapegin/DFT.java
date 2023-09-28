@@ -9,8 +9,7 @@ public class DFT {
     }
 
     public static double[][] getXYForSinus(int sinusFrequency, int sampleRate) {
-        int maxX = 1;
-        double step = (maxX + 0.0) / sampleRate; //sampleRate == numOfPoints
+        double step = 1.0 / sampleRate; //sampleRate == numOfPoints
         double x = 0.0;
         double[][] xyArr = new double[2][sampleRate];
         for (int i = 0; i < sampleRate; i++) {
@@ -22,11 +21,10 @@ public class DFT {
     }
 
     public static double[][] getXYForMeander(int meanderFrequency, int sampleRate) {
-        int maxX = 1;
-        double step = (maxX + 0.0) / sampleRate; //sampleRate == numOfPoints
-        double x = 0.0;
-        double distanceBetweenJumps = 1.0 / meanderFrequency / 2;
-        double nextJumpX = 0 + distanceBetweenJumps;
+        double step = 1.0 / sampleRate; //sampleRate == numOfPoints
+        double x = 0;
+        double distanceBetweenJumps = 1.0 / meanderFrequency / 2; //расстояние между скачками меандра
+        double nextJumpX = distanceBetweenJumps;
         double[][] xyArr = new double[2][sampleRate];
 
         for (int i = 0; i < sampleRate; i++) {

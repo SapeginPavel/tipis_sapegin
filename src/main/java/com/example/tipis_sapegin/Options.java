@@ -3,7 +3,7 @@ package com.example.tipis_sapegin;
 public class Options {
     private static int maxX = 3;
 
-    private static int sampleRate = 100;
+    private static int sampleRate = 30;
 
     private static int[] frequencies = {1, 2, 4, 8};
 

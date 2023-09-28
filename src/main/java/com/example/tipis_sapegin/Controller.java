@@ -8,14 +8,12 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 public class Controller {
-
-    //todo: реализовать произвольный выбор конца
-    //todo: проверить частоту дискретизации = 1, 2
 
     List<LineChart> lineCharts = new ArrayList<>(4);
     List<LineChart> lineChartsRange = new ArrayList<>(4);
@@ -38,6 +36,9 @@ public class Controller {
 
     @FXML
     private ToggleGroup graphs;
+
+    @FXML
+    private ToggleGroup symbols;
 
     @FXML
     private Label labelFreq1;
@@ -85,6 +86,12 @@ public class Controller {
     @FXML
     private RadioButton radioButtonGraphsSinus;
 
+    @FXML
+    private RadioButton radioButtonCreateSymbolsNo;
+
+    @FXML
+    private RadioButton radioButtonCreateSymbolsYes;
+
 
 
 
@@ -123,14 +130,13 @@ public class Controller {
             for (int i = 0; i < lineCharts.size(); i++) {
                 lineCharts.get(i).getData().add(CreateSeriesUtil.createSinusSeries(Options.getMaxX(), Options.getFrequencies()[i]));
             }
-            buildSinusRangeGraphs();
         }
         if (radioButtonGraphsMeander.isSelected()) {
             for (int i = 0; i < lineCharts.size(); i++) {
                 lineCharts.get(i).getData().add(CreateSeriesUtil.createMeanderSeries(Options.getMaxX(), Options.getFrequencies()[i]));
             }
-            buildMeanderRangeGraphs();
         }
+        buildRangeGraphs();
         setLabelsValues(true);
     }
 
@@ -153,19 +159,42 @@ public class Controller {
         }
     }
 
-    void buildSinusRangeGraphs() {
+    void buildRangeGraphs() { //Consumer
         for (int i = 0; i < lineChartsRange.size(); i++) {
-            double[][] xyArr =  DFT.getXYForSinus(Options.getFrequencies()[i], Options.getSampleRate());
+            double[][] xyArr = null;
+            if (radioButtonGraphsSinus.isSelected()) {
+                xyArr = DFT.getXYForSinus(Options.getFrequencies()[i], Options.getSampleRate());
+            }
+            if (radioButtonGraphsMeander.isSelected()) {
+                xyArr =  DFT.getXYForMeander(Options.getFrequencies()[i], Options.getSampleRate());
+            }
+            assert xyArr != null;
             double[] y = DFT.dft(xyArr[1], Options.getSampleRate());
-            lineChartsRange.get(i).getData().add(CreateSeriesUtil.createSeriesForSinusRange(y));
+            LineChart lch = lineChartsRange.get(i);
+            lch.getData().add(CreateSeriesUtil.createSeriesForRange(y));
+            if (radioButtonCreateSymbolsYes.isSelected()) {
+                lch.setCreateSymbols(true);
+                setTooltipsForPicks(lch);
+            } else {
+                lch.setCreateSymbols(false);
+            }
         }
     }
 
-    void buildMeanderRangeGraphs() {
-        for (int i = 0; i < lineChartsRange.size(); i++) {
-            double[][] xyArr =  DFT.getXYForMeander(Options.getFrequencies()[i], Options.getSampleRate());
-            double[] y = DFT.dft(xyArr[1], Options.getSampleRate());
-            lineChartsRange.get(i).getData().add(CreateSeriesUtil.createSeriesForSinusRange(y));
+    void setTooltipsForPicks(LineChart lch) {
+        int amount = lch.getData().size();
+        for (int i = 0; i < amount; i++) {
+            ObservableList<XYChart.Data> dataList = ((XYChart.Series) lch.getData().get(i)).getData();
+            dataList.forEach(data->{
+                Node node = data.getNode();
+                if (Double.parseDouble(data.getYValue().toString()) > 1) {
+//                Tooltip tooltip = new Tooltip("(" + data.getXValue().toString() + "; " + data.getYValue().toString() + ")");
+                    Tooltip tooltip = new Tooltip("x = " + data.getXValue().toString());
+                    Tooltip.install(node, tooltip);
+                } else {
+                    node.setVisible(false);
+                }
+            });
         }
     }
 
@@ -188,8 +217,11 @@ public class Controller {
         assert lchRange3 != null : "fx:id=\"lchRange3\" was not injected: check your FXML file 'ui.fxml'.";
         assert lchRange4 != null : "fx:id=\"lchRange4\" was not injected: check your FXML file 'ui.fxml'.";
         assert mainPane != null : "fx:id=\"mainPane\" was not injected: check your FXML file 'ui.fxml'.";
+        assert radioButtonCreateSymbolsNo != null : "fx:id=\"radioButtonCreateSymbolsNo\" was not injected: check your FXML file 'ui.fxml'.";
+        assert radioButtonCreateSymbolsYes != null : "fx:id=\"radioButtonCreateSymbolsYes\" was not injected: check your FXML file 'ui.fxml'.";
         assert radioButtonGraphsMeander != null : "fx:id=\"radioButtonGraphsMeander\" was not injected: check your FXML file 'ui.fxml'.";
         assert radioButtonGraphsSinus != null : "fx:id=\"radioButtonGraphsSinus\" was not injected: check your FXML file 'ui.fxml'.";
+        assert symbols != null : "fx:id=\"symbols\" was not injected: check your FXML file 'ui.fxml'.";
 
         lineCharts.add(lch1);
         lineCharts.add(lch2);
