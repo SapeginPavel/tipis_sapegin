@@ -117,7 +117,7 @@ public class Controller {
             sampleRate = Integer.parseInt(fieldSampleRate.getText());
             Options.setSampleRate(sampleRate);
         } catch (Exception e) {
-            throw new Exception("The sample rate field must not be empty or must contains integer number");
+            throw new Exception("-----The sample rate field must not be empty or must contains integer number-----");
         }
         if (radioButtonGraphsSinus.isSelected()) {
             for (int i = 0; i < lineCharts.size(); i++) {
