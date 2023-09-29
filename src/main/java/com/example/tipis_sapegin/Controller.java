@@ -241,7 +241,7 @@ public class Controller {
         fieldSampleRate.setText(Integer.toString(Options.getSampleRate()));
 
         if (lineCharts.size() != Options.getFrequencies().length) {
-            throw new Exception("___The number of graphs drawn does not correspond to the number of specified frequencies___");
+            throw new Exception("_____The number of graphs drawn does not correspond to the number of specified frequencies_____");
         }
     }
 
