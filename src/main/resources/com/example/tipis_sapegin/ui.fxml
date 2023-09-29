@@ -217,9 +217,9 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </FlowPane.margin>
                   </RadioButton>
-                  <RadioButton fx:id="radioButtonCreateSymbolsNo" mnemonicParsing="false" text="Нет" toggleGroup="$symbols" />
+                  <RadioButton fx:id="radioButtonCreateSymbolsNo" mnemonicParsing="false" selected="true" text="Нет" toggleGroup="$symbols" />
                   <Label prefHeight="18.0" prefWidth="29.0" />
-                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="80.0" text="Создавать символы?" textAlignment="CENTER" wrapText="true">
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="80.0" text="Отмечать пики?" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
