@@ -233,5 +233,6 @@
             <Font name="Times New Roman" size="20.0" />
          </font>
       </Label>
+      <Pane layoutX="74.0" layoutY="-324.0" prefHeight="700.0" prefWidth="1300.0" />
    </children>
 </Pane>

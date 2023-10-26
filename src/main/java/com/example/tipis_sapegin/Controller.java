@@ -159,7 +159,7 @@ public class Controller {
         }
     }
 
-    void buildRangeGraphs() { //Consumer
+    void buildRangeGraphs() {
         for (int i = 0; i < lineChartsRange.size(); i++) {
             double[][] xyArr = null;
             if (radioButtonGraphsSinus.isSelected()) {
@@ -170,6 +170,7 @@ public class Controller {
             }
             assert xyArr != null;
             double[] y = DFT.dft(xyArr[1], Options.getSampleRate());
+            y[0] = 0; //исключаем постоянную составляющую
             LineChart lch = lineChartsRange.get(i);
             lch.getData().add(CreateSeriesUtil.createSeriesForRange(y));
             if (radioButtonCreateSymbolsYes.isSelected()) {
